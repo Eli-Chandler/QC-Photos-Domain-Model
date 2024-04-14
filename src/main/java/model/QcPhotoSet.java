@@ -11,15 +11,15 @@ public class QcPhotoSet {
     @GeneratedValue
     Long id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private QCPhotoProvider qcPhotoProvider;
+    @ManyToOne(cascade = CascadeType.PERSIST) // We don't want to destroy a QcPhotoProvider if it's orphaned
+    private QcPhotoProvider qcPhotoProvider;
 
     @OneToMany(cascade = CascadeType.ALL)
     private final Set<QcPhoto> qcPhotos = new HashSet<>();
 
     protected QcPhotoSet() {}
 
-    public QcPhotoSet(QCPhotoProvider qcPhotoProvider) {
+    public QcPhotoSet(QcPhotoProvider qcPhotoProvider) {
         this.qcPhotoProvider = qcPhotoProvider;
     }
 
@@ -27,7 +27,7 @@ public class QcPhotoSet {
         return id;
     }
 
-    public QCPhotoProvider getQcPhotoProvider() {
+    public QcPhotoProvider getQcPhotoProvider() {
         return qcPhotoProvider;
     }
 

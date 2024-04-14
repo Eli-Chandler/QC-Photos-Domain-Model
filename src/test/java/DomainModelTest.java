@@ -25,7 +25,7 @@ public class DomainModelTest {
         Storefront storefront = new Storefront("weidian", "Weidian", "https://weidian.com/item.html?itemID={}");
         Product product = new Product(storefront, "1234678");
 
-        QCPhotoProvider superbuy = new QCPhotoProvider("superbuy", "Superbuy");
+        QcPhotoProvider superbuy = new QcPhotoProvider("superbuy", "Superbuy");
 
         QcPhotoSet qcPhotoSet = new QcPhotoSet(superbuy);
         QcPhoto qcPhoto = new QcPhoto("https://superbuy.com/image");

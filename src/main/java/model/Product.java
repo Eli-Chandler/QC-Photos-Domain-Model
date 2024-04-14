@@ -34,7 +34,7 @@ public class Product {
     private ProductId productId;
 
     @MapsId("storefrontId")
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)  // We don't want to destroy a storefront if it's orphaned
     private Storefront storefront;
 
     @OneToMany(cascade = CascadeType.ALL)
