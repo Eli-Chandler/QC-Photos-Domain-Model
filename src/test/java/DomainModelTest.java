@@ -91,6 +91,15 @@ public class DomainModelTest {
         em.getTransaction().commit();
 
         assert productTypedQuery.getResultList().isEmpty();
+
+        TypedQuery<Storefront> storefrontTypedQuery = em.createQuery(
+                "select s from Storefront  s",
+                Storefront.class
+        );
+
+        assert ! storefrontTypedQuery.getResultList().isEmpty();
+
+
     }
 
     @Test

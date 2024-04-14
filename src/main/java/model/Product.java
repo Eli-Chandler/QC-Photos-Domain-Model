@@ -55,6 +55,7 @@ public class Product {
     public Product(String listingId, Storefront storefront) {
         this.productId = new ProductId(listingId, storefront.getId());
         this.storefront = storefront;
+        this.timeFetched = new Date(System.currentTimeMillis());
     }
 
     public Product(String listingId, Storefront storefront, float price, float domesticFreight, float width, float length, float height, String thumbnailUrl) {
@@ -85,39 +86,30 @@ public class Product {
     public String getListingId() {
         return productId.getListingId();
     }
-
     public Storefront getStorefront() {
         return storefront;
     }
-
     public Set<QcPhotoSet> getQcPhotoSets() {
         return qcPhotoSets;
     }
-
     public float getPrice() {
         return price;
     }
-
     public float getDomesticFreight() {
         return domesticFreight;
     }
-
     public float getWidth() {
         return width;
     }
-
     public float getLength() {
         return length;
     }
-
     public float getHeight() {
         return height;
     }
-
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }
-
     public Date getTimeFetched() {
         return timeFetched;
     }
