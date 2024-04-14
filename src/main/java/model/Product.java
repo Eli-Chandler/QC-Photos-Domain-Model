@@ -38,7 +38,7 @@ public class Product {
     @ManyToOne(cascade = CascadeType.PERSIST, optional = false)  // We don't want to destroy a storefront if it's orphaned
     private Storefront storefront;
 
-    @OneToMany(cascade = CascadeType.ALL) // We do want to destroy a QcPhotoSet if it's orphaned
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // We do want to destroy a QcPhotoSet if it's orphaned
     private final Set<QcPhotoSet> qcPhotoSets = new HashSet<>();
 
     private float price;
@@ -69,9 +69,13 @@ public class Product {
         this.timeFetched = new Date(System.currentTimeMillis());
     }
 
-    public void addQCPhotoSet(QcPhotoSet qcPhotoSet) {
+    public void addQcPhotoSet(QcPhotoSet qcPhotoSet) {
         qcPhotoSets.add(qcPhotoSet);
         qcPhotoSet.setProduct(this);
+    }
+
+    public void removeQcPhotoSet(QcPhotoSet qcPhotoSet) {
+        qcPhotoSets.remove(qcPhotoSet);
     }
 
     public void updateFetchedTime() {

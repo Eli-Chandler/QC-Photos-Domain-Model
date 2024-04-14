@@ -17,7 +17,7 @@ public class QcPhotoSet {
     @ManyToOne(cascade = CascadeType.PERSIST) // We don't want to destroy a QcPhotoProvider if it's orphaned
     private QcPhotoProvider qcPhotoProvider;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private final Set<QcPhoto> qcPhotos = new HashSet<>();
 
     protected QcPhotoSet() {}
@@ -43,12 +43,16 @@ public class QcPhotoSet {
         this.product = product;
 
         if ( ! product.getQcPhotoSets().contains(this)) {
-            product.addQCPhotoSet(this);
+            product.addQcPhotoSet(this);
         }
     }
 
     public void addQcPhoto(QcPhoto qcPhoto) {
         qcPhotos.add(qcPhoto);
         qcPhoto.setQcPhotoSet(this);
+    }
+
+    public void removeQcPhoto(QcPhoto qcPhoto) {
+        qcPhotos.remove(qcPhoto);
     }
 }

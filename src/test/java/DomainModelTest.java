@@ -31,7 +31,7 @@ public class DomainModelTest {
         QcPhoto qcPhoto = new QcPhoto("https://superbuy.com/image");
         qcPhotoSet.addQcPhoto(qcPhoto);
 
-        product.addQCPhotoSet(qcPhotoSet);
+        product.addQcPhotoSet(qcPhotoSet);
 
         return product;
     }
@@ -91,5 +91,31 @@ public class DomainModelTest {
         em.getTransaction().commit();
 
         assert productTypedQuery.getResultList().isEmpty();
+    }
+
+    @Test
+    public void testRemovingQcImageSet() {
+        EntityManager em = entityManagerFactory.createEntityManager();
+
+        Product product = createProduct("123");
+
+        em.getTransaction().begin();
+        em.persist(product);
+        em.getTransaction().commit();
+
+        for (QcPhotoSet qcPhotoSet : product.getQcPhotoSets()) {
+            product.removeQcPhotoSet(qcPhotoSet);
+        }
+
+        em.getTransaction().begin();
+        em.persist(product);
+        em.getTransaction().commit();
+
+        TypedQuery<QcPhotoSet> qcPhotoSetTypedQuery = em.createQuery(
+                "select q from QcPhotoSet q",
+                QcPhotoSet.class
+        );
+
+        assert qcPhotoSetTypedQuery.getResultList().isEmpty();
     }
 }
