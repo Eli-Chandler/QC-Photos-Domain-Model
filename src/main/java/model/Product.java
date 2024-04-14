@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,17 +35,47 @@ public class Product {
     private ProductId productId;
 
     @MapsId("storefrontId")
-    @ManyToOne(cascade = CascadeType.PERSIST)  // We don't want to destroy a storefront if it's orphaned
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)  // We don't want to destroy a storefront if it's orphaned
     private Storefront storefront;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL) // We do want to destroy a QcPhotoSet if it's orphaned
     private final Set<QcPhotoSet> qcPhotoSets = new HashSet<>();
+
+    private float price;
+    private float domesticFreight;
+    private float width;
+    private float length;
+    private float height;
+    private String thumbnailUrl;
+    private Date timeFetched;
+
 
     protected Product() {} // JPA
 
-    public Product(Storefront storefront, String listingId) {
+    public Product(String listingId, Storefront storefront) {
         this.productId = new ProductId(listingId, storefront.getId());
         this.storefront = storefront;
+    }
+
+    public Product(String listingId, Storefront storefront, float price, float domesticFreight, float width, float length, float height, String thumbnailUrl) {
+        this.productId = new ProductId(listingId, storefront.getId());
+        this.storefront = storefront;
+        this.price = price;
+        this.domesticFreight = domesticFreight;
+        this.width = width;
+        this.length = length;
+        this.height = height;
+        this.thumbnailUrl = thumbnailUrl;
+        this.timeFetched = new Date(System.currentTimeMillis());
+    }
+
+    public void addQCPhotoSet(QcPhotoSet qcPhotoSet) {
+        qcPhotoSets.add(qcPhotoSet);
+        qcPhotoSet.setProduct(this);
+    }
+
+    public void updateFetchedTime() {
+        timeFetched = new Date(System.currentTimeMillis());
     }
 
     public String getListingId() {
@@ -55,11 +86,35 @@ public class Product {
         return storefront;
     }
 
-    public Set<QcPhotoSet> getQCPhotoSets() {
+    public Set<QcPhotoSet> getQcPhotoSets() {
         return qcPhotoSets;
     }
 
-    public void addQCPhotoSet(QcPhotoSet qcPhotoSet) {
-        qcPhotoSets.add(qcPhotoSet);
+    public float getPrice() {
+        return price;
+    }
+
+    public float getDomesticFreight() {
+        return domesticFreight;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getLength() {
+        return length;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public Date getTimeFetched() {
+        return timeFetched;
     }
 }

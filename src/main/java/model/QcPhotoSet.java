@@ -11,6 +11,9 @@ public class QcPhotoSet {
     @GeneratedValue
     Long id;
 
+    @ManyToOne(optional = false)
+    private Product product;
+
     @ManyToOne(cascade = CascadeType.PERSIST) // We don't want to destroy a QcPhotoProvider if it's orphaned
     private QcPhotoProvider qcPhotoProvider;
 
@@ -26,16 +29,26 @@ public class QcPhotoSet {
     public Long getId() {
         return id;
     }
-
+    public Product getProduct() {
+        return product;
+    }
     public QcPhotoProvider getQcPhotoProvider() {
         return qcPhotoProvider;
     }
-
     public Set<QcPhoto> getQcPhotos() {
         return qcPhotos;
     }
 
+    public void setProduct(Product product) {
+        this.product = product;
+
+        if ( ! product.getQcPhotoSets().contains(this)) {
+            product.addQCPhotoSet(this);
+        }
+    }
+
     public void addQcPhoto(QcPhoto qcPhoto) {
         qcPhotos.add(qcPhoto);
+        qcPhoto.setQcPhotoSet(this);
     }
 }

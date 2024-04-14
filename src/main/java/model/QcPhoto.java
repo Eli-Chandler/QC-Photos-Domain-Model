@@ -3,6 +3,7 @@ package model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Objects;
 
 @Entity
@@ -10,6 +11,9 @@ public class QcPhoto {
     @Id
     @GeneratedValue
     private Long id;
+
+    @ManyToOne(optional = false)
+    private QcPhotoSet qcPhotoSet;
 
     private String photoUrl;
 
@@ -27,6 +31,10 @@ public class QcPhoto {
         return photoUrl;
     }
 
+    public QcPhotoSet getQcPhotoSet() {
+        return qcPhotoSet;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,5 +46,9 @@ public class QcPhoto {
     @Override
     public int hashCode() {
         return Objects.hash(id, photoUrl);
+    }
+
+    public void setQcPhotoSet(QcPhotoSet qcPhotoSet) {
+        this.qcPhotoSet = qcPhotoSet;
     }
 }
