@@ -1,4 +1,4 @@
-package model;
+package com.qcphotos.model;
 
 import javax.persistence.*;
 import java.util.HashSet;

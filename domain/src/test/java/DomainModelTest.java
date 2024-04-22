@@ -1,3 +1,4 @@
+import com.qcphotos.model.*;
 import model.*;
 import org.junit.After;
 import org.junit.Before;
@@ -13,7 +14,7 @@ public class DomainModelTest {
 
     @Before
     public void setUp() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("model");
+        entityManagerFactory = Persistence.createEntityManagerFactory("com/qcphotos/model");
     }
 
     @After

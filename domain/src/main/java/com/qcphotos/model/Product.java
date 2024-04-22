@@ -1,38 +1,17 @@
-package model;
+package com.qcphotos.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 
-@Embeddable
-class ProductId implements Serializable {
-    private String listingId;
 
-    private Long storefrontId;
-
-    protected ProductId() {}  // JPA
-
-    public ProductId(String listingId, Long storefrontId) {
-        this.listingId = listingId;
-        this.storefrontId = storefrontId;
-    }
-
-    public String getListingId() {
-        return listingId;
-    }
-
-    public Long getStorefrontId() {
-        return storefrontId;
-    }
-}
 
 @Entity
 public class Product {
     @EmbeddedId
-    private ProductId productId;
+    private ProductIdentifier productId;
 
     @MapsId("storefrontId")
     @ManyToOne(cascade = CascadeType.PERSIST, optional = false)  // We don't want to destroy a storefront if it's orphaned
@@ -53,13 +32,13 @@ public class Product {
     protected Product() {} // JPA
 
     public Product(String listingId, Storefront storefront) {
-        this.productId = new ProductId(listingId, storefront.getId());
+        this.productId = new ProductIdentifier(listingId, storefront.getId());
         this.storefront = storefront;
         this.timeFetched = new Date(System.currentTimeMillis());
     }
 
     public Product(String listingId, Storefront storefront, float price, float domesticFreight, float width, float length, float height, String thumbnailUrl) {
-        this.productId = new ProductId(listingId, storefront.getId());
+        this.productId = new ProductIdentifier(listingId, storefront.getId());
         this.storefront = storefront;
         this.price = price;
         this.domesticFreight = domesticFreight;
