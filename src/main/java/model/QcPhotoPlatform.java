@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class QcPhotoProvider {
+public class QcPhotoPlatform {
     @Id
     @GeneratedValue
     private Long id;
@@ -14,9 +14,9 @@ public class QcPhotoProvider {
 
     private String displayName;
 
-    protected QcPhotoProvider() {}
+    protected QcPhotoPlatform() {}
 
-    public QcPhotoProvider(String name, String displayName) {
+    public QcPhotoPlatform(String name, String displayName) {
         this.name = name;
         this.displayName = displayName;
     }

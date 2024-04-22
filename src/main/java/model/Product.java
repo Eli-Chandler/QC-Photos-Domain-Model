@@ -92,25 +92,62 @@ public class Product {
     public Set<QcPhotoSet> getQcPhotoSets() {
         return qcPhotoSets;
     }
+
+    //<editor-fold desc="dumb">
     public float getPrice() {
         return price;
     }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
     public float getDomesticFreight() {
         return domesticFreight;
     }
+
+    public void setDomesticFreight(float domesticFreight) {
+        this.domesticFreight = domesticFreight;
+    }
+
     public float getWidth() {
         return width;
     }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
     public float getLength() {
         return length;
     }
+
+    public void setLength(float length) {
+        this.length = length;
+    }
+
     public float getHeight() {
         return height;
     }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
     public Date getTimeFetched() {
         return timeFetched;
     }
+
+    public void setTimeFetched(Date timeFetched) {
+        this.timeFetched = timeFetched;
+    }
+    //</editor-fold>
 }

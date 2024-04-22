@@ -23,18 +23,6 @@ public class QcPhoto {
         this.photoUrl = photoUrl;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public QcPhotoSet getQcPhotoSet() {
-        return qcPhotoSet;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,5 +38,17 @@ public class QcPhoto {
 
     public void setQcPhotoSet(QcPhotoSet qcPhotoSet) {
         this.qcPhotoSet = qcPhotoSet;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public QcPhotoSet getQcPhotoSet() {
+        return qcPhotoSet;
     }
 }
