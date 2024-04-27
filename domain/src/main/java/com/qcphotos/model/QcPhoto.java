@@ -23,19 +23,6 @@ public class QcPhoto {
         this.photoUrl = photoUrl;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        QcPhoto qcPhoto = (QcPhoto) o;
-        return Objects.equals(id, qcPhoto.id) && Objects.equals(photoUrl, qcPhoto.photoUrl);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, photoUrl);
-    }
-
     public void setQcPhotoSet(QcPhotoSet qcPhotoSet) {
         this.qcPhotoSet = qcPhotoSet;
     }
@@ -50,5 +37,18 @@ public class QcPhoto {
 
     public QcPhotoSet getQcPhotoSet() {
         return qcPhotoSet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QcPhoto qcPhoto = (QcPhoto) o;
+        return Objects.equals(photoUrl, qcPhoto.photoUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(photoUrl);
     }
 }

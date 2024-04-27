@@ -121,11 +121,11 @@ public class Product {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public Date getTimeFetched() {
+    public Date getFetchedTime() {
         return timeFetched;
     }
 
-    public void setTimeFetched(Date timeFetched) {
+    public void setFetchedTime(Date timeFetched) {
         this.timeFetched = timeFetched;
     }
     //</editor-fold>

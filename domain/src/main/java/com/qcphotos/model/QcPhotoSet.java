@@ -2,6 +2,7 @@ package com.qcphotos.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -54,5 +55,18 @@ public class QcPhotoSet {
 
     public void removeQcPhoto(QcPhoto qcPhoto) {
         qcPhotos.remove(qcPhoto);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QcPhotoSet that = (QcPhotoSet) o;
+        return Objects.equals(qcPhotoPlatform, that.qcPhotoPlatform) && Objects.equals(qcPhotos, that.qcPhotos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(qcPhotoPlatform, qcPhotos);
     }
 }
