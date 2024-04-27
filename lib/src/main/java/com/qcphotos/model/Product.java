@@ -62,17 +62,19 @@ public class Product {
         timeFetched = new Date(System.currentTimeMillis());
     }
 
+    //<editor-fold desc="View dumb getters and setters">
     public String getListingId() {
         return productId.getListingId();
     }
+
     public Storefront getStorefront() {
         return storefront;
     }
+
     public Set<QcPhotoSet> getQcPhotoSets() {
         return qcPhotoSets;
     }
 
-    //<editor-fold desc="dumb">
     public float getPrice() {
         return price;
     }
